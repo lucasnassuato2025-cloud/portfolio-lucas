@@ -1,15 +1,16 @@
-COMANDOS:
+PORTFOLIO LUCAS NASSUATO
 
-1. Abra a pasta do projeto no terminal.
+Comandos principais:
 
-2. Instale:
 npm install
 
-3. Rode:
 npm run dev
 
-4. Abra:
 http://localhost:3000
 
-IMPORTANTE:
-Use esta pasta como projeto novo. Não cole por cima de uma pasta antiga com arquivos quebrados.
+Build de produção:
+
+npm run build
+
+Observação:
+Este pacote já vem limpo para envio/publicação. Não inclui node_modules, .next nem .git.
