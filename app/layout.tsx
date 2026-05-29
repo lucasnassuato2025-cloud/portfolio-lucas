@@ -1,32 +1,32 @@
-import './globals.css'
+﻿import './globals.css'
 import type { Metadata } from 'next'
 
-const siteUrl = 'https://nassusinfo.netlify.app'
+const siteUrl = 'https://portfolio-lucas.vercel.app'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Lucas Nassuato | Sites, Apps e Sistemas Web',
+    default: 'Lucas Nassuato | Dev Fullstack, Web Design e UI/UX',
     template: '%s | Lucas Nassuato',
   },
   description:
-    'Desenvolvimento de sites profissionais, landing pages, aplicativos e sistemas web para empresas, pequenos negócios e marcas que querem vender melhor no digital.',
+    'Portfólio de Lucas Nassuato da Silva: desenvolvimento fullstack, web design, UI/UX, sites modernos, landing pages, sistemas web e performance digital.',
   applicationName: 'Portfolio Lucas Nassuato',
   authors: [{ name: 'Lucas Nassuato da Silva', url: siteUrl }],
   creator: 'Lucas Nassuato da Silva',
   publisher: 'Lucas Nassuato da Silva',
   keywords: [
     'Lucas Nassuato',
-    'desenvolvedor web',
+    'Lucas Nassuato da Silva',
+    'desenvolvedor fullstack',
+    'web design',
+    'UI UX',
+    'performance digital',
     'criação de sites',
-    'aplicativos mobile',
-    'sistemas web',
-    'portfólio premium',
     'landing pages',
-    'sites para empresas',
-    'desenvolvedor em Santos',
-    'Play Store',
-    'App Store',
+    'sistemas web',
+    'portfólio desenvolvedor',
+    'desenvolvedor web Brasil',
   ],
   alternates: {
     canonical: '/',
@@ -35,9 +35,9 @@ export const metadata: Metadata = {
     icon: '/icon.svg',
   },
   openGraph: {
-    title: 'Lucas Nassuato | Sites, Apps e Sistemas Web',
+    title: 'Lucas Nassuato | Dev Fullstack, Web Design e UI/UX',
     description:
-      'Portfólio de desenvolvimento web, apps, sistemas e landing pages com visual premium, performance e foco comercial.',
+      'Portfólio de desenvolvimento web, interfaces premium, sites modernos e sistemas com foco em performance digital.',
     url: siteUrl,
     siteName: 'Lucas Nassuato',
     type: 'website',
@@ -47,15 +47,15 @@ export const metadata: Metadata = {
         url: '/lucas-premium.png',
         width: 1448,
         height: 1086,
-        alt: 'Lucas Nassuato',
+        alt: 'Lucas Nassuato da Silva',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Lucas Nassuato | Sites, Apps e Sistemas Web',
+    title: 'Lucas Nassuato | Dev Fullstack, Web Design e UI/UX',
     description:
-      'Sites, apps, sistemas e landing pages com visual premium e foco em resultado.',
+      'Sites modernos, UI/UX, sistemas web e performance digital com visual premium.',
     images: ['/lucas-premium.png'],
   },
   robots: {
