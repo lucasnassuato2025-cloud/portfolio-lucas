@@ -25,18 +25,32 @@ const highlights = [
 
 const cases = [
   {
-    name: 'Nassus One / Nassus CRM',
-    status: 'Produto em evolução',
-    category: 'CRM • SaaS • Produto próprio',
+    name: 'Nassus One',
+    status: 'Produto próprio em evolução',
+    category: 'Plataforma • Gestão • Produto',
     description:
-      'Ecossistema de gestão comercial com experiência responsiva, fluxo de autenticação, área de planos, estrutura de CRM e evolução contínua de desktop e mobile.',
+      'Plataforma web criada para concentrar experiências e operações digitais da Nassusinfo, com foco em navegação responsiva, organização de funcionalidades, autenticação e evolução contínua.',
     impact:
-      'Projeto usado para aprofundar arquitetura de produto, consistência de interface, tratamento de erros, experiência mobile e fluxo de publicação.',
+      'Case de arquitetura de produto, UX desktop/mobile, versionamento, deploy, CI/CD, tratamento de estados e manutenção evolutiva.',
     stack: ['JavaScript', 'UI/UX', 'GitHub Actions', 'Vercel', 'E2E'],
     privacy: 'Código comercial protegido em repositório privado',
     link: nassusUrl,
     action: 'Conhecer a Nassusinfo',
     tone: 'blue',
+  },
+  {
+    name: 'Nassus CRM',
+    status: 'CRM / SaaS em evolução',
+    category: 'CRM • Gestão comercial • SaaS',
+    description:
+      'Sistema de gestão comercial pensado para organizar leads, clientes, indicadores e rotinas internas em uma interface clara, produtiva e preparada para crescer.',
+    impact:
+      'Case de dashboards, fluxos de CRM, autenticação, dados, componentes reutilizáveis, testes, GitHub Actions e publicação contínua.',
+    stack: ['CRM', 'Dashboard', 'JavaScript', 'GitHub Actions', 'Vercel'],
+    privacy: 'Código comercial protegido em repositório privado',
+    link: '#contact',
+    action: 'Falar sobre o CRM',
+    tone: 'emerald',
   },
   {
     name: 'Vetix',
@@ -50,20 +64,6 @@ const cases = [
     privacy: 'Case apresentado sem expor credenciais ou código sensível',
     action: 'Falar sobre este case',
     link: '#contact',
-    tone: 'emerald',
-  },
-  {
-    name: 'Levefy',
-    status: 'Projeto publicado',
-    category: 'Bem-estar • Web App • IA local',
-    description:
-      'Aplicação web com foco em experiência moderna, responsividade e evolução de funcionalidades, incluindo experimentação com geração de conteúdo por IA local.',
-    impact:
-      'Projeto para consolidar Next.js, React, rotas de API, UI premium, publicação e integração com ferramentas locais de IA.',
-    stack: ['Next.js', 'React', 'Tailwind CSS', 'API Routes', 'Ollama'],
-    privacy: 'Demonstração pública selecionada',
-    link: 'https://levefy-mu.vercel.app/',
-    action: 'Abrir projeto',
     tone: 'violet',
   },
   {
