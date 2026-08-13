@@ -28,6 +28,23 @@ Hoje trabalho unindo:
 - **Git, GitHub Actions, CI/CD e deploy**
 - **Vercel, Render e Netlify**
 
+## 🎓 Formação acadêmica
+
+### Superior de Tecnologia em Análise e Desenvolvimento de Sistemas
+**UNICID — Universidade Cidade de São Paulo • Cursando**
+
+Graduação tecnológica iniciada em **2026**, com duração acadêmica prevista de **4 semestres**.
+
+Disciplinas do período atual:
+
+- Algoritmos e Pensamento Computacional
+- Desenvolvimento Front-End para Web
+- Design Profissional
+- Modelagem de Banco de Dados
+- Meio Ambiente e Cuidados de Saúde
+
+➡️ [Ver formação acadêmica no portfólio](https://portfolio-lucas.vercel.app/formacao)
+
 ## 🚀 Cases e produtos
 
 ### Nassus One / Nassus CRM
