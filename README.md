@@ -4,6 +4,7 @@ Desenvolvedor Full Stack e criador da **Nassusinfo Soluções Tecnológicas**, c
 
 > **Meu foco:** transformar uma necessidade de negócio em uma experiência digital clara, responsiva, publicável e preparada para evoluir.
 
+[![LinkedIn](https://img.shields.io/badge/LINKEDIN-LUCAS_NASSUATO-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lucas-nassuato-da-silva-854882372/)
 [![Nassusinfo](https://img.shields.io/badge/NASSUSINFO-SITE-0A66C2?style=for-the-badge&logo=googlechrome&logoColor=white)](https://www.nassusinfo.com.br/)
 [![Instagram](https://img.shields.io/badge/INSTAGRAM-@lucas__nassusinfo-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/lucas_nassusinfo/)
 [![WhatsApp](https://img.shields.io/badge/WHATSAPP-FALAR_COMIGO-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/5513991026619)
@@ -196,6 +197,7 @@ npm run start
 **Lucas Nassuato da Silva**  
 Full Stack Developer • Nassusinfo Soluções Tecnológicas
 
+- 💼 LinkedIn: https://www.linkedin.com/in/lucas-nassuato-da-silva-854882372/
 - 🏢 Nassusinfo: https://www.nassusinfo.com.br/
 - 💻 GitHub: https://github.com/lucasnassuato2025-cloud
 - 📷 Instagram: https://www.instagram.com/lucas_nassusinfo/
