@@ -5,10 +5,12 @@ export function LanguageSwitcher({
   locale,
   ariaLabel,
   compact = false,
+  context = 'home',
 }: {
   locale: Locale
   ariaLabel: string
   compact?: boolean
+  context?: 'home' | 'education'
 }) {
   return (
     <nav
@@ -18,11 +20,12 @@ export function LanguageSwitcher({
       {(Object.keys(localeConfig) as Locale[]).map((item) => {
         const active = item === locale
         const config = localeConfig[item]
+        const href = context === 'education' ? config.education : config.home
 
         return (
           <Link
             key={item}
-            href={config.home}
+            href={href}
             hrefLang={config.htmlLang}
             aria-current={active ? 'page' : undefined}
             title={config.longLabel}
