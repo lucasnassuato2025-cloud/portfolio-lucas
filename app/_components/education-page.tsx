@@ -2,6 +2,12 @@ import Link from 'next/link'
 import { localeConfig, portfolioContent, type Locale } from '../portfolio-content'
 import { LanguageSwitcher } from './language-switcher'
 
+const directionHeadlines: Record<Locale, string> = {
+  pt: 'Full Stack + fundamentos sólidos.',
+  en: 'Full Stack + solid foundations.',
+  es: 'Full Stack + fundamentos sólidos.',
+}
+
 export function EducationPage({ locale }: { locale: Locale }) {
   const copy = portfolioContent[locale]
   const config = localeConfig[locale]
@@ -60,7 +66,7 @@ export function EducationPage({ locale }: { locale: Locale }) {
 
           <article className="surface-card p-6 sm:p-8">
             <p className="section-eyebrow">{page.directionTitle}</p>
-            <h2 className="mt-4 text-2xl font-bold tracking-[-0.03em] text-white sm:text-3xl">Full Stack + fundamentos sólidos.</h2>
+            <h2 className="mt-4 text-2xl font-bold tracking-[-0.03em] text-white sm:text-3xl">{directionHeadlines[locale]}</h2>
             <p className="mt-5 text-base leading-8 text-zinc-400">{page.directionBody}</p>
             <div className="mt-7 flex flex-wrap gap-2">
               {['Algorithms', 'Front-end', 'Database', 'Design', 'Software'].map((item) => (
