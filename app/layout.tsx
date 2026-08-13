@@ -1,4 +1,4 @@
-﻿import './globals.css'
+import './globals.css'
 import type { Metadata } from 'next'
 
 const siteUrl = 'https://portfolio-lucas.vercel.app'
@@ -6,27 +6,35 @@ const siteUrl = 'https://portfolio-lucas.vercel.app'
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Lucas Nassuato | Dev Fullstack, Web Design e UI/UX',
+    default: 'Lucas Nassuato | Desenvolvedor Full Stack | Next.js e React',
     template: '%s | Lucas Nassuato',
   },
   description:
-    'Portfólio de Lucas Nassuato da Silva: desenvolvimento fullstack, web design, UI/UX, sites modernos, landing pages, sistemas web e performance digital.',
-  applicationName: 'Portfolio Lucas Nassuato',
+    'Portfólio profissional de Lucas Nassuato da Silva, desenvolvedor Full Stack especializado em Next.js, React, TypeScript, sites profissionais, landing pages, sistemas web, UI/UX e performance digital.',
+  applicationName: 'Portfólio Lucas Nassuato',
   authors: [{ name: 'Lucas Nassuato da Silva', url: siteUrl }],
   creator: 'Lucas Nassuato da Silva',
   publisher: 'Lucas Nassuato da Silva',
+  category: 'technology',
   keywords: [
     'Lucas Nassuato',
     'Lucas Nassuato da Silva',
-    'desenvolvedor fullstack',
+    'desenvolvedor full stack',
+    'full stack developer',
+    'desenvolvedor Next.js',
+    'desenvolvedor React',
+    'TypeScript',
+    'JavaScript',
     'web design',
     'UI UX',
-    'performance digital',
-    'criação de sites',
+    'criação de sites profissionais',
     'landing pages',
     'sistemas web',
     'portfólio desenvolvedor',
     'desenvolvedor web Brasil',
+    'desenvolvedor web São Paulo',
+    'desenvolvedor web Guarujá',
+    'Nassusinfo',
   ],
   alternates: {
     canonical: '/',
@@ -35,11 +43,11 @@ export const metadata: Metadata = {
     icon: '/icon.svg',
   },
   openGraph: {
-    title: 'Lucas Nassuato | Dev Fullstack, Web Design e UI/UX',
+    title: 'Lucas Nassuato | Desenvolvedor Full Stack',
     description:
-      'Portfólio de desenvolvimento web, interfaces premium, sites modernos e sistemas com foco em performance digital.',
+      'Desenvolvimento de sites, landing pages e sistemas web com Next.js, React, TypeScript, UI/UX e foco em performance.',
     url: siteUrl,
-    siteName: 'Lucas Nassuato',
+    siteName: 'Portfólio Lucas Nassuato',
     type: 'website',
     locale: 'pt_BR',
     images: [
@@ -47,20 +55,27 @@ export const metadata: Metadata = {
         url: '/lucas-premium.png',
         width: 1448,
         height: 1086,
-        alt: 'Lucas Nassuato da Silva',
+        alt: 'Lucas Nassuato da Silva — Desenvolvedor Full Stack',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Lucas Nassuato | Dev Fullstack, Web Design e UI/UX',
+    title: 'Lucas Nassuato | Desenvolvedor Full Stack',
     description:
-      'Sites modernos, UI/UX, sistemas web e performance digital com visual premium.',
+      'Next.js, React, TypeScript, sites profissionais, landing pages, sistemas web e UI/UX.',
     images: ['/lucas-premium.png'],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
   },
 }
 
