@@ -4,7 +4,6 @@ Desenvolvedor Full Stack e criador da **Nassusinfo Soluções Tecnológicas**, c
 
 > **Meu foco:** transformar uma necessidade de negócio em uma experiência digital clara, responsiva, publicável e preparada para evoluir.
 
-[![Portfolio](https://img.shields.io/badge/PORTFÓLIO-ABRIR-111827?style=for-the-badge&logo=vercel)](https://portfolio-lucas.vercel.app)
 [![Nassusinfo](https://img.shields.io/badge/NASSUSINFO-SITE-0A66C2?style=for-the-badge&logo=googlechrome&logoColor=white)](https://www.nassusinfo.com.br/)
 [![Instagram](https://img.shields.io/badge/INSTAGRAM-@lucas__nassusinfo-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/lucas_nassusinfo/)
 [![WhatsApp](https://img.shields.io/badge/WHATSAPP-FALAR_COMIGO-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/5513991026619)
@@ -43,16 +42,23 @@ Disciplinas do período atual:
 - Modelagem de Banco de Dados
 - Meio Ambiente e Cuidados de Saúde
 
-➡️ [Ver formação acadêmica no portfólio](https://portfolio-lucas.vercel.app/formacao)
-
 ## 🚀 Cases e produtos
 
-### Nassus One / Nassus CRM
-**Produto próprio • CRM • SaaS • Em evolução**
+### Nassus One
+**Produto próprio • Plataforma de gestão • Em evolução**
 
-Ecossistema de gestão comercial com foco em experiência responsiva, autenticação, planos, organização de clientes e evolução contínua de desktop/mobile.
+Plataforma web criada para concentrar experiências e operações digitais da Nassusinfo, com foco em navegação responsiva, organização de funcionalidades, autenticação, experiência de usuário e evolução contínua.
 
-**Prática técnica:** produto digital, UX responsiva, GitHub Actions, testes E2E, tratamento de erros e fluxo de publicação na Vercel.
+**Prática técnica:** arquitetura de produto, UX desktop/mobile, versionamento, deploy, CI/CD, tratamento de estados e manutenção evolutiva.
+
+> Código comercial mantido em repositório privado.
+
+### Nassus CRM
+**CRM • SaaS • Gestão comercial • Em evolução**
+
+Sistema de gestão comercial pensado para organizar leads, clientes, indicadores e rotinas internas em uma interface clara e produtiva.
+
+**Prática técnica:** dashboards, fluxos de CRM, autenticação, dados, componentes reutilizáveis, GitHub Actions, testes e publicação na Vercel.
 
 > Código comercial mantido em repositório privado.
 
@@ -64,15 +70,6 @@ Aplicação voltada à rotina veterinária, desenvolvida com frontend moderno e 
 **Stack/prática:** React, Vite, Google Identity Services, Git, Render, configuração de ambientes e recuperação de versões.
 
 > Case apresentado sem exposição de credenciais ou código sensível.
-
-### Levefy
-**Web App • Bem-estar • Projeto publicado**
-
-Projeto usado para aprofundar desenvolvimento com Next.js/React, responsividade, UI premium, rotas de API e experimentação com geração de conteúdo por IA local.
-
-**Stack:** Next.js, React, Tailwind CSS, API Routes, Ollama e Vercel.
-
-➡️ [Abrir Levefy](https://levefy-mu.vercel.app/)
 
 ### Health Fisio
 **Projeto de cliente • Saúde • Site profissional**
@@ -199,7 +196,6 @@ npm run start
 **Lucas Nassuato da Silva**  
 Full Stack Developer • Nassusinfo Soluções Tecnológicas
 
-- 🌐 Portfólio: https://portfolio-lucas.vercel.app
 - 🏢 Nassusinfo: https://www.nassusinfo.com.br/
 - 💻 GitHub: https://github.com/lucasnassuato2025-cloud
 - 📷 Instagram: https://www.instagram.com/lucas_nassusinfo/
