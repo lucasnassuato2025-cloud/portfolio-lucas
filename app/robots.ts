@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+import { siteUrl } from './portfolio-content'
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,6 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://nassus.com.br/sitemap.xml',
+    sitemap: `${siteUrl}/sitemap.xml`,
+    host: siteUrl,
   }
 }
