@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: '%s | Lucas Nassuato',
   },
   description:
-    'Portfólio profissional de Lucas Nassuato da Silva: desenvolvimento Full Stack, SaaS, CRM, Next.js, React, TypeScript, Node.js, sistemas web, sites profissionais, UI/UX, SEO, integrações e deploy.',
+    'Portfólio profissional de Lucas Nassuato da Silva: desenvolvedor Full Stack e graduando em Análise e Desenvolvimento de Sistemas, com atuação em SaaS, CRM, Next.js, React, TypeScript, Node.js, sistemas web, UI/UX, SEO, integrações e deploy.',
   applicationName: 'Portfólio Lucas Nassuato',
   authors: [{ name: 'Lucas Nassuato da Silva', url: siteUrl }],
   creator: 'Lucas Nassuato da Silva',
@@ -22,6 +22,10 @@ export const metadata: Metadata = {
     'Lucas Nassuato da Silva',
     'Full Stack Developer',
     'desenvolvedor full stack',
+    'Análise e Desenvolvimento de Sistemas',
+    'ADS',
+    'UNICID',
+    'graduando em tecnologia',
     'desenvolvedor Next.js',
     'desenvolvedor React',
     'TypeScript',
@@ -55,7 +59,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Lucas Nassuato | Full Stack Developer',
     description:
-      'Sites, SaaS, CRM, sistemas web, Next.js, React, TypeScript, UI/UX, integrações e deploy — do briefing à publicação.',
+      'Desenvolvedor Full Stack e graduando em Análise e Desenvolvimento de Sistemas. Sites, SaaS, CRM, sistemas web, Next.js, React, TypeScript, UI/UX, integrações e deploy.',
     url: siteUrl,
     siteName: 'Portfólio Lucas Nassuato',
     type: 'website',
@@ -73,7 +77,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Lucas Nassuato | Full Stack Developer',
     description:
-      'SaaS, CRM, Next.js, React, TypeScript, sistemas web, UI/UX, integrações e deploy.',
+      'Full Stack Developer e graduando em Análise e Desenvolvimento de Sistemas: SaaS, CRM, Next.js, React, TypeScript e sistemas web.',
     images: ['/lucas-premium.png'],
   },
   robots: {
@@ -96,7 +100,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body>
+        <a
+          href="/formacao"
+          className="block border-b border-blue-400/15 bg-blue-500/[0.08] px-4 py-2.5 text-center text-xs font-semibold text-blue-100 transition hover:bg-blue-500/[0.13] sm:text-sm"
+        >
+          🎓 Graduação em Análise e Desenvolvimento de Sistemas — UNICID • Cursando
+        </a>
+        {children}
+      </body>
     </html>
   )
 }
