@@ -1,5 +1,6 @@
 import './globals.css'
 import type { Metadata, Viewport } from 'next'
+import { LinkedInLink } from './_components/linkedin-link'
 import { siteUrl } from './portfolio-content'
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export const metadata: Metadata = {
     'SEO',
     'Nassusinfo',
     'portfolio developer',
+    'LinkedIn Lucas Nassuato',
   ],
   icons: {
     icon: '/icon.svg',
@@ -57,7 +59,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body>
+        {children}
+        <LinkedInLink />
+      </body>
     </html>
   )
 }
