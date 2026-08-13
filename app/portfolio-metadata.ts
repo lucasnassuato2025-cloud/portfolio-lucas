@@ -13,7 +13,7 @@ export function getPortfolioMetadata(locale: Locale): Metadata {
   const canonical = `${siteUrl}${config.home === '/' ? '/' : config.home}`
 
   return {
-    title: copy.meta.title,
+    title: { absolute: copy.meta.title },
     description: copy.meta.description,
     alternates: {
       canonical,
@@ -48,9 +48,10 @@ export function getEducationMetadata(locale: Locale): Metadata {
   const copy = portfolioContent[locale]
   const config = localeConfig[locale]
   const canonical = `${siteUrl}${config.education}`
+  const title = `${copy.educationPage.title} | Lucas Nassuato`
 
   return {
-    title: `${copy.educationPage.title} | Lucas Nassuato`,
+    title: { absolute: title },
     description: copy.educationPage.intro,
     alternates: {
       canonical,
@@ -61,7 +62,7 @@ export function getEducationMetadata(locale: Locale): Metadata {
       },
     },
     openGraph: {
-      title: `${copy.educationPage.title} | Lucas Nassuato`,
+      title,
       description: copy.educationPage.intro,
       url: canonical,
       type: 'website',
