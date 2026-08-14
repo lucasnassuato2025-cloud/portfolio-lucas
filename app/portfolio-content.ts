@@ -106,15 +106,6 @@ export const portfolioContent = {
           stack: ['CRM', 'Dashboard', 'Dados', 'CI/CD', 'Vercel'],
         },
         {
-          name: 'Vetix',
-          status: 'SaaS desenvolvido',
-          category: 'Gestão veterinária',
-          description:
-            'Aplicação SaaS voltada à rotina veterinária com frontend moderno, autenticação Google e configuração de ambientes.',
-          impact: 'React, Vite, Google Identity, publicação, Git e recuperação segura de versões.',
-          stack: ['React', 'Vite', 'Google Identity', 'Git', 'Render'],
-        },
-        {
           name: 'Health Fisio',
           status: 'Projeto de cliente',
           category: 'Saúde • Site profissional',
@@ -303,14 +294,6 @@ export const portfolioContent = {
           stack: ['CRM', 'Dashboard', 'Data', 'CI/CD', 'Vercel'],
         },
         {
-          name: 'Vetix',
-          status: 'SaaS project',
-          category: 'Veterinary management',
-          description: 'A veterinary SaaS application with a modern frontend, Google authentication and environment configuration.',
-          impact: 'React, Vite, Google Identity, deployment, Git and safe version recovery.',
-          stack: ['React', 'Vite', 'Google Identity', 'Git', 'Render'],
-        },
-        {
           name: 'Health Fisio',
           status: 'Client project',
           category: 'Healthcare • Professional website',
@@ -474,7 +457,6 @@ export const portfolioContent = {
       items: [
         { name: 'Nassus One', status: 'Producto propio • En evolución', category: 'Plataforma de gestión', description: 'Plataforma web creada para centralizar operaciones digitales de Nassusinfo con navegación responsiva, autenticación y evolución continua.', impact: 'Arquitectura de producto, UX desktop/mobile, versionado, CI/CD, estados y mantenimiento evolutivo.', stack: ['Producto', 'JavaScript', 'UI/UX', 'GitHub Actions', 'Vercel'] },
         { name: 'Nassus CRM', status: 'CRM / SaaS • En evolución', category: 'Gestión comercial', description: 'Sistema para organizar leads, clientes, indicadores y rutinas comerciales en una interfaz clara y productiva.', impact: 'Dashboards, flujos CRM, autenticación, datos, componentes reutilizables y publicación continua.', stack: ['CRM', 'Dashboard', 'Datos', 'CI/CD', 'Vercel'] },
-        { name: 'Vetix', status: 'SaaS desarrollado', category: 'Gestión veterinaria', description: 'Aplicación SaaS para la rutina veterinaria con frontend moderno, autenticación Google y configuración de entornos.', impact: 'React, Vite, Google Identity, publicación, Git y recuperación segura de versiones.', stack: ['React', 'Vite', 'Google Identity', 'Git', 'Render'] },
         { name: 'Health Fisio', status: 'Proyecto de cliente', category: 'Salud • Sitio profesional', description: 'Sitio institucional con servicios, galería, contacto, agenda externa, WhatsApp y experiencia responsiva.', impact: 'Credibilidad, SEO, estructura de contenido, rendimiento percibido y conversión de contactos.', stack: ['HTML', 'CSS', 'JavaScript', 'SEO', 'UX Mobile'] },
         { name: 'RL Viagens & Turismo', status: 'Proyecto comercial', category: 'Turismo • Presencia digital', description: 'Experiencia web de turismo con paquetes, galería, contacto, políticas y navegación responsiva.', impact: 'Arquitectura de información, contenido comercial, diseño responsivo y publicación completa.', stack: ['HTML', 'CSS', 'JavaScript', 'Responsive Web', 'SEO'] },
         { name: 'BarberControl', status: 'MVP / MicroSaaS', category: 'Barbería • Suscripción', description: 'MVP con propuesta de valor, planes de suscripción, flujo de pago y estructura inicial de gestión.', impact: 'Producto digital, UX, monetización, estructura de planes e integración de pagos.', stack: ['SaaS', 'UI/UX', 'Cakto', 'Producto', 'Web'] },
