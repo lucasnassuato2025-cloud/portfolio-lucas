@@ -63,15 +63,6 @@ Sistema de gestão comercial pensado para organizar leads, clientes, indicadores
 
 > Código comercial mantido em repositório privado.
 
-### Vetix
-**SaaS veterinário • Gestão • Autenticação**
-
-Aplicação voltada à rotina veterinária, desenvolvida com frontend moderno e integração de identidade Google.
-
-**Stack/prática:** React, Vite, Google Identity Services, Git, Render, configuração de ambientes e recuperação de versões.
-
-> Case apresentado sem exposição de credenciais ou código sensível.
-
 ### Health Fisio
 **Projeto de cliente • Saúde • Site profissional**
 
