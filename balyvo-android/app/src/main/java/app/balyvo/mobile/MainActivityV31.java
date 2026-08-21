@@ -6,11 +6,28 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Base64;
-import android.util.Base64InputStream;
 import android.view.*;
 import android.widget.*;
+import java.io.*;
 
 public class MainActivityV31 extends MainActivityV3 {
+
+  private Bitmap loadVerifiedHero(){
+    try{
+      int[] ids={R.raw.hero_a,R.raw.hero_b,R.raw.hero_c,R.raw.hero_d,R.raw.hero_e,R.raw.hero_f};
+      StringBuilder encoded=new StringBuilder(8600);
+      for(int id:ids){
+        BufferedReader br=new BufferedReader(new InputStreamReader(getResources().openRawResource(id)));
+        String line;
+        while((line=br.readLine())!=null) encoded.append(line.trim());
+        br.close();
+      }
+      byte[] image=Base64.decode(encoded.toString(),Base64.DEFAULT);
+      return BitmapFactory.decodeByteArray(image,0,image.length);
+    }catch(Exception e){
+      return null;
+    }
+  }
 
   @Override void splash(){
     FrameLayout root=new FrameLayout(this);
@@ -18,11 +35,8 @@ public class MainActivityV31 extends MainActivityV3 {
 
     ImageView hero=new ImageView(this);
     hero.setScaleType(ImageView.ScaleType.CENTER_CROP);
-    try{
-      Base64InputStream in=new Base64InputStream(getResources().openRawResource(R.raw.balyvo_hero), Base64.DEFAULT);
-      Bitmap bm=BitmapFactory.decodeStream(in);
-      hero.setImageBitmap(bm);
-    }catch(Exception ignored){}
+    Bitmap bm=loadVerifiedHero();
+    if(bm!=null) hero.setImageBitmap(bm);
     root.addView(hero,new FrameLayout.LayoutParams(-1,-1));
 
     View shade=new View(this);
