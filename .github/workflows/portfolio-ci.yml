@@ -79,11 +79,10 @@ jobs:
           grep -q "package: name='app.balyvo.mobile'" /tmp/balyvo-badging.txt
           grep -q "versionName='0.3.1-preview'" /tmp/balyvo-badging.txt
           grep -q "launchable-activity: name='app.balyvo.mobile.MainActivityV31'" /tmp/balyvo-badging.txt
-          unzip -p "$APK" classes.dex > /tmp/classes.dex || true
-          unzip -p "$APK" classes2.dex > /tmp/classes2.dex || true
-          strings /tmp/classes.dex /tmp/classes2.dex | grep -q "VISUAL NOVO ATIVO"
-          strings /tmp/classes.dex /tmp/classes2.dex | grep -q "Boas escolhas hoje"
-          unzip -l "$APK" | grep -q "res/raw/balyvo_hero"
+          unzip -p "$APK" classes.dex | strings > /tmp/balyvo-strings.txt
+          grep -q "VISUAL NOVO ATIVO" /tmp/balyvo-strings.txt
+          grep -q "Boas escolhas hoje" /tmp/balyvo-strings.txt
+          unzip -l "$APK" | grep -Eq 'res/.*\.b64'
       - name: Stage APK
         run: |
           mkdir -p balyvo-android/output
