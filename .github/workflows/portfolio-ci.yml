@@ -82,7 +82,11 @@ jobs:
           unzip -p "$APK" classes.dex | strings > /tmp/balyvo-strings.txt
           grep -q "VISUAL NOVO ATIVO" /tmp/balyvo-strings.txt
           grep -q "Boas escolhas hoje" /tmp/balyvo-strings.txt
-          unzip -l "$APK" | grep -Eq 'res/.*\.b64'
+          HERO_PATH=$(unzip -Z1 "$APK" | grep -E '^res/.*\.b64$' | head -1)
+          test -n "$HERO_PATH"
+          unzip -p "$APK" "$HERO_PATH" | base64 -d > /tmp/balyvo-hero.jpg
+          test $(stat -c%s /tmp/balyvo-hero.jpg) -gt 4000
+          file /tmp/balyvo-hero.jpg | grep -q 'JPEG image data'
       - name: Stage APK
         run: |
           mkdir -p balyvo-android/output
