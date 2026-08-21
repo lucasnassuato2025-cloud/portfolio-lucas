@@ -52,7 +52,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
-      - name: Validate hero source exact bytes
+      - name: Validate corrected hero exact bytes
         run: |
           cat \
             balyvo-android/app/src/main/res/raw/hero_a.txt \
@@ -62,8 +62,10 @@ jobs:
             balyvo-android/app/src/main/res/raw/hero_e.txt \
             balyvo-android/app/src/main/res/raw/hero_f.txt \
             | base64 -d > /tmp/balyvo-hero-source.jpg
-          echo '361f03de493dc3647bdf80a6dca36272b17c5bb5aaa816fd29f276d20276eb82  /tmp/balyvo-hero-source.jpg' | sha256sum -c -
-          file /tmp/balyvo-hero-source.jpg | grep -q 'JPEG image data'
+          echo 'e1a5b57b5a36ca76c2ecdb0da43aa762ea5ee0b63e8a10b402ce13264aaf1758  /tmp/balyvo-hero-source.jpg' | sha256sum -c -
+          file /tmp/balyvo-hero-source.jpg | tee /tmp/hero-file.txt
+          grep -q 'JPEG image data' /tmp/hero-file.txt
+          grep -q '480x853' /tmp/hero-file.txt
       - name: Generate Balyvo signing key
         run: |
           keytool -genkeypair -v \
@@ -81,7 +83,7 @@ jobs:
           BALYVO_KEY_ALIAS: balyvo
           BALYVO_KEY_PASSWORD: balyvo-preview
         run: gradle :app:assembleRelease --stacktrace
-      - name: Validate APK for Android installation and redesign
+      - name: Validate APK for corrected hero build
         run: |
           APK="$GITHUB_WORKSPACE/balyvo-android/app/build/outputs/apk/release/app-release.apk"
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK"
@@ -89,10 +91,11 @@ jobs:
           unzip -t "$APK"
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" | tee /tmp/balyvo-badging.txt
           grep -q "package: name='app.balyvo.mobile'" /tmp/balyvo-badging.txt
-          grep -q "versionName='0.3.1-preview'" /tmp/balyvo-badging.txt
+          grep -q "versionName='0.3.2-preview'" /tmp/balyvo-badging.txt
           grep -q "launchable-activity: name='app.balyvo.mobile.MainActivityV31'" /tmp/balyvo-badging.txt
           unzip -p "$APK" classes.dex | strings > /tmp/balyvo-strings.txt
-          grep -q "VISUAL NOVO ATIVO" /tmp/balyvo-strings.txt
+          grep -q "HERO CORRIGIDO" /tmp/balyvo-strings.txt
+          grep -q "PREMIUM 0.3.2" /tmp/balyvo-strings.txt
           grep -q "Boas escolhas hoje" /tmp/balyvo-strings.txt
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump resources "$APK" > /tmp/balyvo-resources.txt
           for RES in hero_a hero_b hero_c hero_d hero_e hero_f; do
@@ -101,14 +104,14 @@ jobs:
       - name: Stage APK
         run: |
           mkdir -p balyvo-android/output
-          cp balyvo-android/app/build/outputs/apk/release/app-release.apk balyvo-android/output/Balyvo-Android-v0.3.1.apk
-          sha256sum balyvo-android/output/Balyvo-Android-v0.3.1.apk | tee balyvo-android/output/SHA256.txt
-          ls -lh balyvo-android/output/Balyvo-Android-v0.3.1.apk
+          cp balyvo-android/app/build/outputs/apk/release/app-release.apk balyvo-android/output/Balyvo-Android-v0.3.2.apk
+          sha256sum balyvo-android/output/Balyvo-Android-v0.3.2.apk | tee balyvo-android/output/SHA256.txt
+          ls -lh balyvo-android/output/Balyvo-Android-v0.3.2.apk
       - name: Upload Balyvo APK
         uses: actions/upload-artifact@v4
         with:
-          name: Balyvo-Android-v0.3.1
+          name: Balyvo-Android-v0.3.2
           path: |
-            balyvo-android/output/Balyvo-Android-v0.3.1.apk
+            balyvo-android/output/Balyvo-Android-v0.3.2.apk
             balyvo-android/output/SHA256.txt
           retention-days: 30
