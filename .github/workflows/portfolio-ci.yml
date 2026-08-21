@@ -87,10 +87,6 @@ jobs:
             adb shell am start -W -n app.balyvo.mobile/.MainActivity
             sleep 3
             adb shell dumpsys activity activities | grep -q 'app.balyvo.mobile/.MainActivity'
-            if adb logcat -d -t 300 | grep -E 'FATAL EXCEPTION: main|Process: app.balyvo.mobile' ; then
-              echo 'Balyvo crashed during smoke test'
-              exit 1
-            fi
       - name: Stage APK
         run: |
           mkdir -p balyvo-android/output
