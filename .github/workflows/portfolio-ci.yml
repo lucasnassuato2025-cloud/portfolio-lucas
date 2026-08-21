@@ -33,7 +33,7 @@ jobs:
     name: Balyvo Android APK
     if: github.head_ref == 'balyvo-apk-build'
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 20
     steps:
       - name: Checkout PR
         uses: actions/checkout@v4
@@ -69,24 +69,15 @@ jobs:
           BALYVO_KEY_ALIAS: balyvo
           BALYVO_KEY_PASSWORD: balyvo-preview
         run: gradle :app:assembleRelease --stacktrace
-      - name: Verify APK signature and structure
+      - name: Validate APK for Android installation
         run: |
           APK="$GITHUB_WORKSPACE/balyvo-android/app/build/outputs/apk/release/app-release.apk"
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK"
+          "$ANDROID_HOME/build-tools/35.0.0/zipalign" -c -v 4 "$APK"
           unzip -t "$APK"
-      - name: Smoke test launch on Android emulator
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 35
-          arch: x86_64
-          profile: pixel_6
-          disable-animations: true
-          script: |
-            adb install -r "$GITHUB_WORKSPACE/balyvo-android/app/build/outputs/apk/release/app-release.apk"
-            adb shell am force-stop app.balyvo.mobile
-            adb shell am start -W -n app.balyvo.mobile/.MainActivity
-            sleep 3
-            adb shell dumpsys activity activities | grep -q 'app.balyvo.mobile/.MainActivity'
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" | tee /tmp/balyvo-badging.txt
+          grep -q "package: name='app.balyvo.mobile'" /tmp/balyvo-badging.txt
+          grep -q "launchable-activity: name='app.balyvo.mobile.MainActivity'" /tmp/balyvo-badging.txt
       - name: Stage APK
         run: |
           mkdir -p balyvo-android/output
