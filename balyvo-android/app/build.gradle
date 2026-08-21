@@ -10,8 +10,19 @@ android {
         applicationId 'app.balyvo.mobile'
         minSdk 26
         targetSdk 35
-        versionCode 1
-        versionName '0.1.0-preview'
+        versionCode 2
+        versionName '0.1.1-preview'
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(System.getenv('BALYVO_KEYSTORE') ?: 'balyvo-release.keystore')
+            storePassword System.getenv('BALYVO_STORE_PASSWORD') ?: 'balyvo-preview'
+            keyAlias System.getenv('BALYVO_KEY_ALIAS') ?: 'balyvo'
+            keyPassword System.getenv('BALYVO_KEY_PASSWORD') ?: 'balyvo-preview'
+            enableV1Signing true
+            enableV2Signing true
+        }
     }
 
     buildTypes {
@@ -19,7 +30,10 @@ android {
             debuggable true
         }
         release {
+            debuggable false
             minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
