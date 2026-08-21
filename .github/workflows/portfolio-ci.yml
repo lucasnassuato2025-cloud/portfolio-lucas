@@ -77,17 +77,17 @@ jobs:
           unzip -t "$APK"
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" | tee /tmp/balyvo-badging.txt
           grep -q "package: name='app.balyvo.mobile'" /tmp/balyvo-badging.txt
-          grep -q "versionName='0.2.0-preview'" /tmp/balyvo-badging.txt
-          grep -q "launchable-activity: name='app.balyvo.mobile.MainActivityV2'" /tmp/balyvo-badging.txt
+          grep -q "versionName='0.3.0-preview'" /tmp/balyvo-badging.txt
+          grep -q "launchable-activity: name='app.balyvo.mobile.MainActivityV3'" /tmp/balyvo-badging.txt
       - name: Stage APK
         run: |
           mkdir -p balyvo-android/output
-          cp balyvo-android/app/build/outputs/apk/release/app-release.apk balyvo-android/output/Balyvo-Android-v0.2.0.apk
-          sha256sum balyvo-android/output/Balyvo-Android-v0.2.0.apk
-          ls -lh balyvo-android/output/Balyvo-Android-v0.2.0.apk
+          cp balyvo-android/app/build/outputs/apk/release/app-release.apk balyvo-android/output/Balyvo-Android-v0.3.0.apk
+          sha256sum balyvo-android/output/Balyvo-Android-v0.3.0.apk
+          ls -lh balyvo-android/output/Balyvo-Android-v0.3.0.apk
       - name: Upload Balyvo APK
         uses: actions/upload-artifact@v4
         with:
-          name: Balyvo-Android-v0.2.0
-          path: balyvo-android/output/Balyvo-Android-v0.2.0.apk
+          name: Balyvo-Android-v0.3.0
+          path: balyvo-android/output/Balyvo-Android-v0.3.0.apk
           retention-days: 30
