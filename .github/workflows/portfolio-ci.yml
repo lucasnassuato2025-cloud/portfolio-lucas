@@ -33,7 +33,7 @@ jobs:
     name: Balyvo Android APK
     if: github.head_ref == 'balyvo-apk-build'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 35
     steps:
       - name: Checkout PR
         uses: actions/checkout@v4
@@ -47,23 +47,59 @@ jobs:
       - name: Install Android platform
         run: |
           yes | sdkmanager --licenses >/dev/null 2>&1 || true
-          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0' 'platform-tools'
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
-      - name: Build installable APK
+      - name: Generate Balyvo signing key
+        run: |
+          keytool -genkeypair -v \
+            -keystore "$GITHUB_WORKSPACE/balyvo-android/balyvo-release.keystore" \
+            -storepass balyvo-preview \
+            -alias balyvo \
+            -keypass balyvo-preview \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=Balyvo Preview, OU=Balyvo, O=Balyvo, L=Guaruja, ST=SP, C=BR"
+      - name: Build signed release APK
         working-directory: balyvo-android
-        run: gradle :app:assembleDebug --stacktrace
+        env:
+          BALYVO_KEYSTORE: ${{ github.workspace }}/balyvo-android/balyvo-release.keystore
+          BALYVO_STORE_PASSWORD: balyvo-preview
+          BALYVO_KEY_ALIAS: balyvo
+          BALYVO_KEY_PASSWORD: balyvo-preview
+        run: gradle :app:assembleRelease --stacktrace
+      - name: Verify APK signature and structure
+        run: |
+          APK="$GITHUB_WORKSPACE/balyvo-android/app/build/outputs/apk/release/app-release.apk"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK"
+          unzip -t "$APK"
+      - name: Smoke test launch on Android emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          script: |
+            adb install -r "$GITHUB_WORKSPACE/balyvo-android/app/build/outputs/apk/release/app-release.apk"
+            adb shell am force-stop app.balyvo.mobile
+            adb shell am start -W -n app.balyvo.mobile/.MainActivity
+            sleep 3
+            adb shell dumpsys activity activities | grep -q 'app.balyvo.mobile/.MainActivity'
+            if adb logcat -d -t 300 | grep -E 'FATAL EXCEPTION: main|Process: app.balyvo.mobile' ; then
+              echo 'Balyvo crashed during smoke test'
+              exit 1
+            fi
       - name: Stage APK
         run: |
           mkdir -p balyvo-android/output
-          cp balyvo-android/app/build/outputs/apk/debug/app-debug.apk balyvo-android/output/Balyvo-preview.apk
-          sha256sum balyvo-android/output/Balyvo-preview.apk
-          ls -lh balyvo-android/output/Balyvo-preview.apk
+          cp balyvo-android/app/build/outputs/apk/release/app-release.apk balyvo-android/output/Balyvo-Android-v0.1.1.apk
+          sha256sum balyvo-android/output/Balyvo-Android-v0.1.1.apk
+          ls -lh balyvo-android/output/Balyvo-Android-v0.1.1.apk
       - name: Upload Balyvo APK
         uses: actions/upload-artifact@v4
         with:
-          name: Balyvo-preview-APK
-          path: balyvo-android/output/Balyvo-preview.apk
+          name: Balyvo-Android-v0.1.1
+          path: balyvo-android/output/Balyvo-Android-v0.1.1.apk
           retention-days: 30
