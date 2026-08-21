@@ -15,7 +15,7 @@ public class MainActivityV31 extends MainActivityV3 {
   private Bitmap loadVerifiedHero(){
     try{
       int[] ids={R.raw.hero_a,R.raw.hero_b,R.raw.hero_c,R.raw.hero_d,R.raw.hero_e,R.raw.hero_f};
-      StringBuilder encoded=new StringBuilder(8600);
+      StringBuilder encoded=new StringBuilder(60000);
       for(int id:ids){
         BufferedReader br=new BufferedReader(new InputStreamReader(getResources().openRawResource(id)));
         String line;
@@ -34,14 +34,16 @@ public class MainActivityV31 extends MainActivityV3 {
     root.setBackgroundColor(NIGHT);
 
     ImageView hero=new ImageView(this);
+    // CENTER_CROP preserva a proporção original: pode recortar bordas, mas nunca estica rosto/corpo.
     hero.setScaleType(ImageView.ScaleType.CENTER_CROP);
+    hero.setAdjustViewBounds(false);
     Bitmap bm=loadVerifiedHero();
     if(bm!=null) hero.setImageBitmap(bm);
     root.addView(hero,new FrameLayout.LayoutParams(-1,-1));
 
     View shade=new View(this);
     GradientDrawable gradient=new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,
-        new int[]{0x11050807,0x22050807,0xAA050807,0xFF050807});
+        new int[]{0x08050807,0x18050807,0xA8050807,0xFF050807});
     shade.setBackground(gradient);
     root.addView(shade,new FrameLayout.LayoutParams(-1,-1));
 
@@ -55,7 +57,7 @@ public class MainActivityV31 extends MainActivityV3 {
     brand.addView(brandText,btp);
     brandText.addView(txt("Balyvo",23,TEXT,true),match());
     brandText.addView(txt("NUTRIÇÃO PARA A VIDA REAL",8,NEON,true),match());
-    TextView version=txt("PREMIUM 0.3.1",8,NIGHT,true);
+    TextView version=txt("PREMIUM 0.3.2",8,NIGHT,true);
     version.setGravity(Gravity.CENTER);
     version.setPadding(dp(10),dp(6),dp(10),dp(6));
     version.setBackground(bg(NEON,99,0,0));
@@ -92,7 +94,7 @@ public class MainActivityV31 extends MainActivityV3 {
     startButton.setOnClickListener(v->shell());
     content.addView(startButton,new LinearLayout.LayoutParams(-1,dp(58)));
 
-    TextView proof=txt("VISUAL NOVO ATIVO · BUILD 0.3.1",8,SOFT,true);
+    TextView proof=txt("HERO CORRIGIDO · BUILD 0.3.2",8,SOFT,true);
     proof.setGravity(Gravity.CENTER);
     LinearLayout.LayoutParams pp=match();pp.topMargin=dp(12);
     content.addView(proof,pp);
@@ -108,7 +110,7 @@ public class MainActivityV31 extends MainActivityV3 {
   @Override View home(){
     ScrollView s=(ScrollView)super.home();
     LinearLayout q=(LinearLayout)s.getChildAt(0);
-    TextView audit=txt("NOVO VISUAL · v0.3.1 PREMIUM",9,NIGHT,true);
+    TextView audit=txt("NOVO HERO · v0.3.2 PREMIUM",9,NIGHT,true);
     audit.setGravity(Gravity.CENTER);
     audit.setPadding(dp(12),dp(8),dp(12),dp(8));
     audit.setBackground(bg(NEON,99,0,0));
