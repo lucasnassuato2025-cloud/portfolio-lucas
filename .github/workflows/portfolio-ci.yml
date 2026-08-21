@@ -52,6 +52,18 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
+      - name: Validate hero source exact bytes
+        run: |
+          cat \
+            balyvo-android/app/src/main/res/raw/hero_a.txt \
+            balyvo-android/app/src/main/res/raw/hero_b.txt \
+            balyvo-android/app/src/main/res/raw/hero_c.txt \
+            balyvo-android/app/src/main/res/raw/hero_d.txt \
+            balyvo-android/app/src/main/res/raw/hero_e.txt \
+            balyvo-android/app/src/main/res/raw/hero_f.txt \
+            | base64 -d > /tmp/balyvo-hero-source.jpg
+          echo '361f03de493dc3647bdf80a6dca36272b17c5bb5aaa816fd29f276d20276eb82  /tmp/balyvo-hero-source.jpg' | sha256sum -c -
+          file /tmp/balyvo-hero-source.jpg | grep -q 'JPEG image data'
       - name: Generate Balyvo signing key
         run: |
           keytool -genkeypair -v \
@@ -82,11 +94,10 @@ jobs:
           unzip -p "$APK" classes.dex | strings > /tmp/balyvo-strings.txt
           grep -q "VISUAL NOVO ATIVO" /tmp/balyvo-strings.txt
           grep -q "Boas escolhas hoje" /tmp/balyvo-strings.txt
-          HERO_PATH=$(unzip -Z1 "$APK" | grep -E '^res/.*\.b64$' | head -1)
-          test -n "$HERO_PATH"
-          unzip -p "$APK" "$HERO_PATH" | base64 -d > /tmp/balyvo-hero.jpg
-          test $(stat -c%s /tmp/balyvo-hero.jpg) -gt 4000
-          file /tmp/balyvo-hero.jpg | grep -q 'JPEG image data'
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump resources "$APK" > /tmp/balyvo-resources.txt
+          for RES in hero_a hero_b hero_c hero_d hero_e hero_f; do
+            grep -q "raw/$RES" /tmp/balyvo-resources.txt
+          done
       - name: Stage APK
         run: |
           mkdir -p balyvo-android/output
