@@ -66,6 +66,12 @@ jobs:
           file /tmp/balyvo-hero-source.jpg | tee /tmp/hero-file.txt
           grep -q 'JPEG image data' /tmp/hero-file.txt
           grep -q '480x853' /tmp/hero-file.txt
+      - name: Validate public UI polish source
+        run: |
+          grep -q 'class MainActivityV41' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV41.java
+          grep -q 'badge.setText("VIDA REAL")' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV41.java
+          grep -q 'build.setVisibility(View.GONE)' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV41.java
+          grep -q 'q.removeViewAt(0)' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV41.java
       - name: Generate Balyvo signing key
         run: |
           keytool -genkeypair -v \
@@ -83,7 +89,7 @@ jobs:
           BALYVO_KEY_ALIAS: balyvo
           BALYVO_KEY_PASSWORD: balyvo-preview
         run: gradle :app:assembleRelease --stacktrace
-      - name: Validate APK carousel and functions
+      - name: Validate APK public polish and functions
         run: |
           APK="$GITHUB_WORKSPACE/balyvo-android/app/build/outputs/apk/release/app-release.apk"
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK"
@@ -91,13 +97,13 @@ jobs:
           unzip -t "$APK"
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" | tee /tmp/balyvo-badging.txt
           grep -q "package: name='app.balyvo.mobile'" /tmp/balyvo-badging.txt
-          grep -q "versionName='0.4.0-preview'" /tmp/balyvo-badging.txt
-          grep -q "launchable-activity: name='app.balyvo.mobile.MainActivityV4'" /tmp/balyvo-badging.txt
+          grep -q "versionName='0.4.1-preview'" /tmp/balyvo-badging.txt
+          grep -q "launchable-activity: name='app.balyvo.mobile.MainActivityV41'" /tmp/balyvo-badging.txt
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump permissions "$APK" | tee /tmp/balyvo-permissions.txt
           grep -q "android.permission.INTERNET" /tmp/balyvo-permissions.txt
           unzip -p "$APK" classes.dex | strings > /tmp/balyvo-strings.txt
-          grep -q "CARROSSEL ATIVO" /tmp/balyvo-strings.txt
-          grep -q "PREMIUM 0.4.0" /tmp/balyvo-strings.txt
+          grep -q "MainActivityV41" /tmp/balyvo-strings.txt
+          grep -q "VIDA REAL" /tmp/balyvo-strings.txt
           grep -q "Favoritos" /tmp/balyvo-strings.txt
           grep -q "Registro manual" /tmp/balyvo-strings.txt
           grep -q "pexels-photo-9219289" /tmp/balyvo-strings.txt
@@ -110,14 +116,14 @@ jobs:
       - name: Stage APK
         run: |
           mkdir -p balyvo-android/output
-          cp balyvo-android/app/build/outputs/apk/release/app-release.apk balyvo-android/output/Balyvo-Android-v0.4.0.apk
-          sha256sum balyvo-android/output/Balyvo-Android-v0.4.0.apk | tee balyvo-android/output/SHA256.txt
-          ls -lh balyvo-android/output/Balyvo-Android-v0.4.0.apk
+          cp balyvo-android/app/build/outputs/apk/release/app-release.apk balyvo-android/output/Balyvo-Android-v0.4.1.apk
+          sha256sum balyvo-android/output/Balyvo-Android-v0.4.1.apk | tee balyvo-android/output/SHA256.txt
+          ls -lh balyvo-android/output/Balyvo-Android-v0.4.1.apk
       - name: Upload Balyvo APK
         uses: actions/upload-artifact@v4
         with:
-          name: Balyvo-Android-v0.4.0
+          name: Balyvo-Android-v0.4.1
           path: |
-            balyvo-android/output/Balyvo-Android-v0.4.0.apk
+            balyvo-android/output/Balyvo-Android-v0.4.1.apk
             balyvo-android/output/SHA256.txt
           retention-days: 30
