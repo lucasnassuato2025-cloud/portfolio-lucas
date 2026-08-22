@@ -95,6 +95,20 @@ jobs:
           grep -q 'P5D' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV6.java
           grep -q 'androidx.core.content.FileProvider' balyvo-android/app/src/main/AndroidManifest.xml
           grep -q 'cache-path name="share"' balyvo-android/app/src/main/res/xml/file_paths.xml
+      - name: Normalize generated source before compile
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV7.java')
+          s = path.read_text()
+          needle = '      case "Registro manual":return "Manual entry";\n'
+          first = s.find(needle)
+          second = s.find(needle, first + len(needle)) if first >= 0 else -1
+          if second >= 0:
+              s = s[:second] + s[second + len(needle):]
+          path.write_text(s)
+          assert s.count('case "Registro manual":return "Manual entry";') == 1
+          PY
       - name: Build unsigned release APK
         working-directory: balyvo-android
         run: gradle :app:assembleRelease --stacktrace
