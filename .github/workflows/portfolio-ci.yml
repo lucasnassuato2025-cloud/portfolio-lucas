@@ -66,7 +66,7 @@ jobs:
           file /tmp/balyvo-hero-source.jpg | tee /tmp/hero-file.txt
           grep -q 'JPEG image data' /tmp/hero-file.txt
           grep -q '480x853' /tmp/hero-file.txt
-      - name: Validate sharing source
+      - name: Validate sharing source and official brand mark
         run: |
           grep -q 'class MainActivityV5' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV5.java
           grep -q 'Compartilhar Balyvo' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV5.java
@@ -74,6 +74,9 @@ jobs:
           grep -q 'Peso e IMC ficam desmarcados' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV5.java
           grep -q 'FileProvider.getUriForFile' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV5.java
           grep -q 'Meta de água atingida' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV5.java
+          grep -q 'R.drawable.ic_balyvo' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV5.java
+          ! grep -q 'drawText("B"' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV5.java
+          grep -q 'strokeColor="#BDFD44"' balyvo-android/app/src/main/res/drawable/ic_balyvo.xml
           grep -q 'badge.setText("VIDA REAL")' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV41.java
           grep -q 'build.setVisibility(View.GONE)' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV41.java
           grep -q 'androidx.core.content.FileProvider' balyvo-android/app/src/main/AndroidManifest.xml
@@ -84,14 +87,14 @@ jobs:
       - name: Align and validate unsigned APK
         run: |
           RAW="$GITHUB_WORKSPACE/balyvo-android/app/build/outputs/apk/release/app-release-unsigned.apk"
-          ALIGNED="$GITHUB_WORKSPACE/balyvo-android/app/build/outputs/apk/release/Balyvo-Android-v0.5.0-UNSIGNED.apk"
+          ALIGNED="$GITHUB_WORKSPACE/balyvo-android/app/build/outputs/apk/release/Balyvo-Android-v0.5.1-UNSIGNED.apk"
           "$ANDROID_HOME/build-tools/35.0.0/zipalign" -f -v 4 "$RAW" "$ALIGNED"
           "$ANDROID_HOME/build-tools/35.0.0/zipalign" -c -v 4 "$ALIGNED"
           unzip -t "$ALIGNED"
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$ALIGNED" | tee /tmp/balyvo-badging.txt
           grep -q "package: name='app.balyvo.mobile'" /tmp/balyvo-badging.txt
-          grep -q "versionCode='9'" /tmp/balyvo-badging.txt
-          grep -q "versionName='0.5.0'" /tmp/balyvo-badging.txt
+          grep -q "versionCode='10'" /tmp/balyvo-badging.txt
+          grep -q "versionName='0.5.1'" /tmp/balyvo-badging.txt
           grep -q "launchable-activity: name='app.balyvo.mobile.MainActivityV5'" /tmp/balyvo-badging.txt
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump permissions "$ALIGNED" | tee /tmp/balyvo-permissions.txt
           grep -q 'android.permission.INTERNET' /tmp/balyvo-permissions.txt
@@ -101,13 +104,13 @@ jobs:
       - name: Stage unsigned APK
         run: |
           mkdir -p balyvo-android/output
-          cp balyvo-android/app/build/outputs/apk/release/Balyvo-Android-v0.5.0-UNSIGNED.apk balyvo-android/output/
-          sha256sum balyvo-android/output/Balyvo-Android-v0.5.0-UNSIGNED.apk > balyvo-android/output/UNSIGNED-SHA256.txt
+          cp balyvo-android/app/build/outputs/apk/release/Balyvo-Android-v0.5.1-UNSIGNED.apk balyvo-android/output/
+          sha256sum balyvo-android/output/Balyvo-Android-v0.5.1-UNSIGNED.apk > balyvo-android/output/UNSIGNED-SHA256.txt
       - name: Upload Balyvo unsigned build
         uses: actions/upload-artifact@v4
         with:
-          name: Balyvo-Android-v0.5.0-unsigned
+          name: Balyvo-Android-v0.5.1-unsigned
           path: |
-            balyvo-android/output/Balyvo-Android-v0.5.0-UNSIGNED.apk
+            balyvo-android/output/Balyvo-Android-v0.5.1-UNSIGNED.apk
             balyvo-android/output/UNSIGNED-SHA256.txt
           retention-days: 7
