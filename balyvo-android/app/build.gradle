@@ -10,8 +10,8 @@ android {
         applicationId 'app.balyvo.mobile'
         minSdk 26
         targetSdk 35
-        versionCode 10
-        versionName '0.5.1'
+        versionCode 11
+        versionName '0.6.0'
     }
 
     buildTypes {
@@ -34,4 +34,5 @@ android {
 
 dependencies {
     implementation 'androidx.core:core:1.15.0'
+    implementation 'com.android.billingclient:billing:9.1.0'
 }
