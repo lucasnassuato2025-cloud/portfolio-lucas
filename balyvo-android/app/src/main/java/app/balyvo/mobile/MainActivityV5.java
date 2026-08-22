@@ -12,7 +12,7 @@ import java.io.*;
 import java.text.*;
 import java.util.*;
 
-/** Balyvo 0.5.0 — base de distribuição com compartilhamento local e privacidade. */
+/** Balyvo 0.5.1 — base de distribuição com compartilhamento local e privacidade. */
 public class MainActivityV5 extends MainActivityV41 {
   private static final String[] SHARE_FIELDS={"Calorias","Água","Sequência","Meta atingida","Peso","IMC"};
 
@@ -104,7 +104,7 @@ public class MainActivityV5 extends MainActivityV41 {
   private Bitmap createShareCard(boolean[] show,boolean achievementOnly,String achievement){
     final int W=1080,H=1350;Bitmap bm=Bitmap.createBitmap(W,H,Bitmap.Config.ARGB_8888);Canvas c=new Canvas(bm);
     Paint p=new Paint(Paint.ANTI_ALIAS_FLAG);LinearGradient grad=new LinearGradient(0,0,W,H,Color.rgb(5,8,7),Color.rgb(16,31,23),Shader.TileMode.CLAMP);p.setShader(grad);c.drawRect(0,0,W,H,p);p.setShader(null);
-    p.setColor(0xFFBDFD44);c.drawRoundRect(72,72,190,190,30,30,p);p.setColor(0xFF07100B);p.setTextSize(82);p.setTypeface(Typeface.DEFAULT_BOLD);c.drawText("B",98,163,p);
+    Drawable brand=getDrawable(R.drawable.ic_balyvo);if(brand!=null){brand.setBounds(72,72,190,190);brand.draw(c);}
     p.setColor(Color.WHITE);p.setTextSize(54);p.setTypeface(Typeface.DEFAULT_BOLD);c.drawText("Balyvo",220,133,p);p.setColor(0xFFBDFD44);p.setTextSize(24);c.drawText("NUTRIÇÃO PARA A VIDA REAL",220,174,p);
     p.setColor(0xFFA2ADA6);p.setTextSize(24);p.setTypeface(Typeface.DEFAULT);c.drawText(new SimpleDateFormat("dd 'de' MMMM 'de' yyyy",new Locale("pt","BR")).format(new Date()),72,246,p);
 
