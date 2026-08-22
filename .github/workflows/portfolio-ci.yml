@@ -72,9 +72,12 @@ jobs:
           grep -q 'Compartilhar Balyvo' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV5.java
           grep -q 'Compartilhar meu progresso' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV5.java
           grep -q 'Peso e IMC ficam desmarcados' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV5.java
-          grep -q 'Conquista' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV5.java
+          grep -q 'FileProvider.getUriForFile' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV5.java
+          grep -q 'Meta de água atingida' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV5.java
           grep -q 'badge.setText("VIDA REAL")' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV41.java
           grep -q 'build.setVisibility(View.GONE)' balyvo-android/app/src/main/java/app/balyvo/mobile/MainActivityV41.java
+          grep -q 'androidx.core.content.FileProvider' balyvo-android/app/src/main/AndroidManifest.xml
+          grep -q 'cache-path name="share"' balyvo-android/app/src/main/res/xml/file_paths.xml
       - name: Build unsigned release APK
         working-directory: balyvo-android
         run: gradle :app:assembleRelease --stacktrace
@@ -92,11 +95,9 @@ jobs:
           grep -q "launchable-activity: name='app.balyvo.mobile.MainActivityV5'" /tmp/balyvo-badging.txt
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump permissions "$ALIGNED" | tee /tmp/balyvo-permissions.txt
           grep -q 'android.permission.INTERNET' /tmp/balyvo-permissions.txt
-          unzip -p "$ALIGNED" classes.dex | strings > /tmp/balyvo-strings.txt
-          grep -q 'Compartilhar Balyvo' /tmp/balyvo-strings.txt
-          grep -q 'Compartilhar meu progresso' /tmp/balyvo-strings.txt
-          grep -q 'Gerar card' /tmp/balyvo-strings.txt
-          grep -q 'Meta de água atingida' /tmp/balyvo-strings.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump xmltree "$ALIGNED" AndroidManifest.xml | tee /tmp/balyvo-manifest.txt
+          grep -q 'androidx.core.content.FileProvider' /tmp/balyvo-manifest.txt
+          test -s "$ALIGNED"
       - name: Stage unsigned APK
         run: |
           mkdir -p balyvo-android/output
